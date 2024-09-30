@@ -1,38 +1,80 @@
-# Pylint Configuration
+[build-system]
+requires = ["setuptools>=69.5.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jockey"
+version = "0.0.1"
+description = "Jockey is a conversational video agent."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Travis Couture", email = "travis@twelvelabs.io" }
+]
+urls = { "Homepage" = "https://github.com/twelvelabs-io/tl-jockey/" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+    "ffmpeg-python==0.2.0",
+    "grequests==0.7.0",
+    "tabulate==0.9.0",
+    "python-dotenv==1.0.1",
+    "rich==13.7.0",
+    "aiosqlite==0.20.0",
+    "langchain-openai==0.1.7",
+    "langchain==0.2.1",
+    "langgraph>=0.0.65",
+    "langgraph-cli==0.1.35",
+    "langgraph-sdk==0.1.11",
+    "openai==1.30.3"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["requirements.txt", "client.ipynb", ".env"]
+
+[tool.setuptools.package-data]
+"*" = ["assets/*"]
+jockey = ["prompts/*.md", "config/*", "pyproject.toml"]
+
 [tool.pylint.MAIN]
 load-plugins = "pylint.extensions.bad_builtin"
 
 [tool.pylint.'MESSAGES CONTROL']
-disable=["raw-checker-failed",
-         "bad-inline-option",
-        "locally-disabled",
-        "file-ignored",
-        "suppressed-message",
-        "useless-suppression",
-        "deprecated-pragma",
-        "use-symbolic-message-instead",
-        "wrong-spelling-in-comment",
-        "redefined-builtin",
-        "unsupported-binary-operation",
-        "duplicate-code",
-        "no-member"]
-enable=["c-extension-no-member", "broad-exception-caught"]
+disable = [
+    "raw-checker-failed",
+    "bad-inline-option",
+    "locally-disabled",
+    "file-ignored",
+    "suppressed-message",
+    "useless-suppression",
+    "deprecated-pragma",
+    "use-symbolic-message-instead",
+    "wrong-spelling-in-comment",
+    "redefined-builtin",
+    "unsupported-binary-operation",
+    "duplicate-code",
+    "no-member"
+]
+enable = ["c-extension-no-member", "broad-exception-caught"]
 
 [tool.pylint.FORMAT]
-max-line-length=120
-max-module-lines=500
-max-args=8
+max-line-length = 120
+max-module-lines = 500
+max-args = 8
 
 [tool.pylint.DEPRECATED_BUILTINS]
-bad-functions=["print", "input"]
+bad-functions = ["print", "input"]
 
-# Flake8 Configuration
 [tool.flake8]
 max-line-length = 120
 ignore = ["E203", "W503"]
 enable = ["W504"]
 
-# mypy Configuration
 [tool.mypy]
 strict = false
 implicit_optional = true
