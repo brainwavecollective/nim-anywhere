@@ -82,6 +82,10 @@ sudo apt-get install ffmpeg
 
 #### NOT TESTED
 
+
+# also do the mkdir & chmod for the nim dir (and/or other related dirs)
+
+
 #### Setup python virtual env 
 
 #cd tl-jockey && python3 -m venv venv
@@ -99,3 +103,6 @@ sudo apt-get install ffmpeg
 # clean up
 sudo apt-get autoremove -y
 sudo rm -rf /var/cache/apt
+
+
+
