@@ -83,7 +83,7 @@ sudo apt-get install ffmpeg
 #### NOT TESTED
 
 
-# also do the mkdir & chmod for the nim dir (and/or other related dirs)
+# also do the mkdir & chmod for the nim dir, but not the other b/c that's out of the container 
 
 
 #### Setup python virtual env 
