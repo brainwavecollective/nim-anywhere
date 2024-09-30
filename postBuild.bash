@@ -88,7 +88,8 @@ sudo apt-get install ffmpeg
 
 #### Setup python virtual env 
 
-#cd tl-jockey && python3 -m venv venv
+# NOTE: cd name = repo name & not within container so this is TBD
+#cd nim-anywhere && python3 -m venv venv
 #source venv/bin/activate
 #echo "the virtual environment is: $VIRTUAL_ENV"
 #pip3 install -r requirements.txt
