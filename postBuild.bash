@@ -15,6 +15,10 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
+# Install requirements
+sudo apt-get install -y jq
+sudo apt-get install -y python3-venv
+
 # Install Docker-out-of-Docker
 sudo apt-get install -y docker-ce-cli
 cat <<EOM | sudo tee /etc/profile.d/docker-out-of-docker.sh > /dev/null
@@ -75,6 +79,11 @@ sudo apt-get install -y python3.11
 #sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
 #sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 2
 #sudo apt-get install -y python3.11-venv python3.11-distutils
+
+#another way to switch from 3.10 to 3.11
+#sudo rm /usr/bin/python3
+#sudo ln -s /usr/bin/python3.11 /usr/bin/python3
+
 
 sudo apt-get install -y ffmpeg
 
