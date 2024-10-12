@@ -1,0 +1,47 @@
+name: Build Docs for Pull Request
+
+# Trigger the workflow only when a pull request is opened/updated and changes occur in the docs folder
+on:
+  pull_request:
+    branches:
+      - main  # Run on pull requests targeting the main branch
+    paths:
+      - 'docs/**'  # Trigger when any file under the docs folder changes
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest  # Runs the workflow in a Linux environment
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Step 2: Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'  # Specify the Python version if needed
+
+    # Step 3: Install Dependencies (Pandoc, Make, etc.)
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y make pandoc  # Install Pandoc and other tools
+        pip install -r docs/requirements.txt  # Install Python dependencies for the docs build
+
+    # Step 4: Build Documentation
+    - name: Build documentation
+      working-directory: docs  # Explicitly set the working directory to `docs`
+      run: make all  # Run the makefile from within the `docs` directory
+      
+    # Step 5: Commit and push changes back to the PR branch
+    - name: Commit and push changes to PR branch
+      run: |
+        git config --local user.name "GitHub Actions"
+        git config --local user.email "actions@github.com"
+        git add README.md  # Add the generated README 
+        git commit -m "Auto-generated documentation update"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
