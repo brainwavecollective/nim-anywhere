@@ -1,0 +1,17 @@
+name: Hello WWWWWW Workflow
+
+# This workflow triggers on push events and manually
+on:
+  push:  # Runs the workflow on any push to the main branch
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest  # Use the GitHub-hosted runner (Ubuntu)
+
+    steps:
+    # Step 1: Print Hello, World!
+    - name: Print Hello World
+      run: echo "Hello, World!"
